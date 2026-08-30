@@ -58,13 +58,27 @@ h1, h2, h3, h4 {
 }
 
 [data-testid="stMetricValue"] {
-    color: var(--accent);
+    color: var(--text-main);
+    font-weight: 700;
+}
+
+[data-testid="stMetricLabel"] {
+    color: var(--text-main) !important;
+    font-weight: 600;
 }
 
 .stMarkdown p,
 .stMarkdown li,
 .stMarkdown div {
     color: var(--text-main);
+}
+
+div[data-testid="stVerticalBlock"] > div:has(figure) {
+    padding: 0.35rem 0.2rem 0.1rem;
+}
+
+figure {
+    margin: 0.25rem 0 0.5rem;
 }
 
 .stTabs [role="tablist"] {
