@@ -188,3 +188,10 @@ with st.container():
             "<div class='section-description'>El tren de muestreo representa los instantes en los que la señal continua es capturada para producir la versión discreta.</div>",
             unsafe_allow_html=True,
         )
+
+    with st.expander("🎬 Ver animación de apoyo", expanded=False):
+        st.image(
+            "https://media.tenor.com/c4Iq2rS_WxsAAAAC/we-have-a-problem-hyperlend.gif",
+            caption="Animación del proceso",
+            use_container_width=True,
+        )
