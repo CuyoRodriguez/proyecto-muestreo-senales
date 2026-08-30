@@ -6,20 +6,15 @@ import numpy as np
 def calcular_senal_continua(
 	tiempo: np.ndarray,
 	valor_inicial: float = 1.0,
-	amplitud_pico: float = 3.0,
-	tasa_subida: float = 1.2,
-	tasa_disminucion: float = 0.18,
-	frecuencia: float = 1.0,
-	fase_inicial: float = np.pi / 4,
+	amplitud_pico: float = 2.0,
+	tasa_descenso: float = 0.5,
 ) -> np.ndarray:
-	"""Calcula una aproximacion suave de la señal continua e(t)."""
-	# Es una aproximacion visual, porque el ejercicio original no proporciona
-	# una ecuacion exacta para la señal.
-	oscilacion = np.sin(2 * np.pi * frecuencia * tiempo + fase_inicial)
-	crecimiento = 1 - np.exp(-tasa_subida * tiempo)
-	disminucion = np.exp(-tasa_disminucion * tiempo)
+	"""Devuelve una curva suave con un único pico y decaimiento progresivo.
 
-	return valor_inicial + amplitud_pico * oscilacion * crecimiento * disminucion
+	Se utiliza la forma sugerida por el enunciado:
+	e(t) = 1.0 + 2.0 * t * exp(-0.5 * t)
+	"""
+	return valor_inicial + amplitud_pico * tiempo * np.exp(-tasa_descenso * tiempo)
 
 
 def calcular_instantes_muestreo(
@@ -57,11 +52,8 @@ def calcular_senal_discreta(
 	tiempo_inicial: float,
 	tiempo_final: float,
 	valor_inicial: float = 1.0,
-	amplitud_pico: float = 3.0,
-	tasa_subida: float = 1.2,
-	tasa_disminucion: float = 0.18,
-	frecuencia: float = 1.0,
-	fase_inicial: float = np.pi / 4,
+	amplitud_pico: float = 2.0,
+	tasa_descenso: float = 0.5,
 ) -> tuple[np.ndarray, np.ndarray]:
 	"""Evalúa la misma ecuación e(t) en los instantes discretos t_k = kT."""
 	instantes = calcular_instantes_muestreo(
@@ -73,10 +65,7 @@ def calcular_senal_discreta(
 		instantes,
 		valor_inicial=valor_inicial,
 		amplitud_pico=amplitud_pico,
-		tasa_subida=tasa_subida,
-		tasa_disminucion=tasa_disminucion,
-		frecuencia=frecuencia,
-		fase_inicial=fase_inicial,
+		tasa_descenso=tasa_descenso,
 	)
 	return instantes, valores
 

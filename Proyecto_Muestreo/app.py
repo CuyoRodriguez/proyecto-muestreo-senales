@@ -118,13 +118,13 @@ with st.container():
         format="%.1f",
     )
 
-    tiempo = np.linspace(0, 40, 400)
+    tiempo = np.linspace(0, 12, 400)
     senal = calcular_senal_continua(tiempo)
 
     instantes_muestreo, valores_muestreados = calcular_senal_discreta(
         periodo_muestreo,
         0,
-        40,
+        12,
     )
 
     col1, col2, col3 = st.columns(3)
