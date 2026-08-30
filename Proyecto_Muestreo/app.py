@@ -19,38 +19,67 @@ def cargar_css() -> None:
             html, body, [data-testid="stAppViewContainer"] {
                 font-size: 18px;
             }
+
+            h1 {
+                font-size: 2.2rem !important;
+                color: #0F172A !important;
+                font-weight: 700 !important;
+                margin-bottom: 0.4rem !important;
+            }
+
+            h2, h3 {
+                font-size: 1.4rem !important;
+                color: #1E293B !important;
+                font-weight: 700 !important;
+                margin-top: 20px !important;
+                margin-bottom: 0.35rem !important;
+            }
+
+            .stCaption {
+                font-size: 1.05rem !important;
+                color: #475569 !important;
+            }
+
             p, span, label, div, .stMarkdown {
                 font-size: 1.15rem;
                 line-height: 1.5;
                 color: #1E1E1E;
             }
+
             [data-testid="stMetricLabel"] {
                 font-size: 1.05rem !important;
                 font-weight: 700 !important;
                 color: #1E1E1E !important;
             }
+
             [data-testid="stMetricValue"] {
                 font-size: 1.65rem !important;
                 font-weight: 800 !important;
                 color: #1E1E1E !important;
             }
-            h1, h2, h3 {
-                font-weight: 800;
-                color: #1f2a37;
-                letter-spacing: -0.02em;
-            }
+
             .stMarkdown p {
                 font-size: 1.08rem;
             }
+
             .stSlider label, .stNumberInput label {
                 color: #1E1E1E !important;
                 font-weight: 600;
             }
+
             .section-description {
-                font-size: 15px !important;
-                line-height: 1.5;
-                color: #1E1E1E;
+                font-size: 1.05rem !important;
+                line-height: 1.6;
+                color: #475569 !important;
                 margin-top: 0.35rem;
+            }
+
+            .card p,
+            .card div,
+            .card h3,
+            .card span {
+                font-size: 1.1rem !important;
+                color: #334155 !important;
             }
         </style>
         """,
