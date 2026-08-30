@@ -60,11 +60,14 @@ with st.container():
     col3.metric("Período", f"{periodo_muestreo:.1f} s")
 
     plt.rcParams.update({
-        "font.size": 10,
-        "axes.titlesize": 12,
-        "axes.labelsize": 10,
+        "font.size": 11,
+        "axes.titlesize": 13,
+        "axes.titleweight": "bold",
+        "axes.labelsize": 11,
         "xtick.labelsize": 10,
         "ytick.labelsize": 10,
+        "legend.fontsize": 10,
+        "figure.titlesize": 14,
     })
 
     with st.container():
@@ -77,7 +80,7 @@ with st.container():
         ax1.tick_params(axis="both", which="major", labelsize=10)
         ax1.grid(True, linestyle="--", alpha=0.4)
         plt.tight_layout()
-        st.pyplot(fig1, use_container_width=False)
+        st.pyplot(fig1, use_container_width=True)
         st.markdown(
             "La señal continua está definida para cualquier instante de tiempo y representa la evolución de la variable en el tiempo."
         )
@@ -92,7 +95,7 @@ with st.container():
         ax2.tick_params(axis="both", which="major", labelsize=10)
         ax2.grid(True, linestyle="--", alpha=0.4)
         plt.tight_layout()
-        st.pyplot(fig2, use_container_width=False)
+        st.pyplot(fig2, use_container_width=True)
         st.markdown(
             "La señal discreta toma los valores de la señal continua solo en los instantes t = kT, donde k es un entero."
         )
@@ -108,7 +111,7 @@ with st.container():
         ax3.set_ylim(0, 1.2)
         ax3.grid(True, axis="x", linestyle="--", alpha=0.4)
         plt.tight_layout()
-        st.pyplot(fig3, use_container_width=False)
+        st.pyplot(fig3, use_container_width=True)
         st.markdown(
             "El tren de muestreo representa los instantes en los que la señal continua es capturada para producir la versión discreta."
         )
