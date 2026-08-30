@@ -59,48 +59,56 @@ with st.container():
     col2.metric("Muestreo", "e(kT)")
     col3.metric("Período", f"{periodo_muestreo:.1f} s")
 
+    plt.rcParams.update({
+        "font.size": 10,
+        "axes.titlesize": 12,
+        "axes.labelsize": 10,
+        "xtick.labelsize": 10,
+        "ytick.labelsize": 10,
+    })
+
     with st.container():
         st.markdown("### 1. Señal continua e(t)")
-        fig1, ax1 = plt.subplots(figsize=(7, 3.5))
+        fig1, ax1 = plt.subplots(figsize=(8, 3), dpi=100)
         ax1.plot(tiempo, senal, color="#2f6fed", linewidth=2.2)
-        ax1.set_title("Señal continua e(t)", fontsize=11)
-        ax1.set_xlabel("Tiempo, t", fontsize=10)
-        ax1.set_ylabel("Amplitud", fontsize=10)
-        ax1.tick_params(axis="both", labelsize=9)
+        ax1.set_title("Señal continua e(t)")
+        ax1.set_xlabel("Tiempo, t")
+        ax1.set_ylabel("Amplitud")
+        ax1.tick_params(axis="both", which="major", labelsize=10)
         ax1.grid(True, linestyle="--", alpha=0.4)
         plt.tight_layout()
-        st.pyplot(fig1)
+        st.pyplot(fig1, use_container_width=False)
         st.markdown(
             "La señal continua está definida para cualquier instante de tiempo y representa la evolución de la variable en el tiempo."
         )
 
     with st.container():
         st.markdown("### 2. Señal discreta e(kT)")
-        fig2, ax2 = plt.subplots(figsize=(7, 3.5))
+        fig2, ax2 = plt.subplots(figsize=(8, 3), dpi=100)
         ax2.stem(instantes_muestreo, valores_muestreados, linefmt="#f39c12", markerfmt="o", basefmt="k-")
-        ax2.set_title("Señal discreta e(kT)", fontsize=11)
-        ax2.set_xlabel("Instantes de muestreo, kT", fontsize=10)
-        ax2.set_ylabel("Valor", fontsize=10)
-        ax2.tick_params(axis="both", labelsize=9)
+        ax2.set_title("Señal discreta e(kT)")
+        ax2.set_xlabel("Instantes de muestreo, kT")
+        ax2.set_ylabel("Valor")
+        ax2.tick_params(axis="both", which="major", labelsize=10)
         ax2.grid(True, linestyle="--", alpha=0.4)
         plt.tight_layout()
-        st.pyplot(fig2)
+        st.pyplot(fig2, use_container_width=False)
         st.markdown(
             "La señal discreta toma los valores de la señal continua solo en los instantes t = kT, donde k es un entero."
         )
 
     with st.container():
         st.markdown("### 3. Señal de muestreo h(t)")
-        fig3, ax3 = plt.subplots(figsize=(7, 3.5))
+        fig3, ax3 = plt.subplots(figsize=(8, 3), dpi=100)
         ax3.stem(instantes_muestreo, np.ones_like(instantes_muestreo), linefmt="#28a745", markerfmt="^", basefmt="k-")
-        ax3.set_title("Tren de impulsos de muestreo h(t)", fontsize=11)
-        ax3.set_xlabel("Tiempo, t = kT", fontsize=10)
-        ax3.set_ylabel("h(t)", fontsize=10)
-        ax3.tick_params(axis="both", labelsize=9)
+        ax3.set_title("Tren de impulsos de muestreo h(t)")
+        ax3.set_xlabel("Tiempo, t = kT")
+        ax3.set_ylabel("h(t)")
+        ax3.tick_params(axis="both", which="major", labelsize=10)
         ax3.set_ylim(0, 1.2)
         ax3.grid(True, axis="x", linestyle="--", alpha=0.4)
         plt.tight_layout()
-        st.pyplot(fig3)
+        st.pyplot(fig3, use_container_width=False)
         st.markdown(
             "El tren de muestreo representa los instantes en los que la señal continua es capturada para producir la versión discreta."
         )
