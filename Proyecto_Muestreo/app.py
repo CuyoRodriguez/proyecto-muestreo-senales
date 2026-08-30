@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 
 import matplotlib.pyplot as plt
@@ -205,8 +206,9 @@ with st.container():
         )
 
     with st.expander("🎬 Ver animación de apoyo", expanded=False):
-        st.image(
-            "assets/problema.gif",
-            caption="Demostración visual",
-            use_container_width=True,
-        )
+        gif_path = os.path.join(os.path.dirname(__file__), "assets", "problema.gif")
+
+        if os.path.exists(gif_path):
+            st.image(gif_path, caption="Demostración visual", use_container_width=True)
+        else:
+            st.warning("No se encontró el archivo del GIF en la ruta especificada.")
