@@ -81,6 +81,21 @@ def cargar_css() -> None:
                 font-size: 1.1rem !important;
                 color: #334155 !important;
             }
+
+            details {
+                border: 1px solid #94A3B8 !important;
+                border-radius: 10px !important;
+                background: #E2E8F0 !important;
+                margin-top: 1rem !important;
+            }
+
+            summary {
+                font-size: 1.1rem !important;
+                font-weight: 700 !important;
+                color: #0F172A !important;
+                padding: 0.75rem 1rem !important;
+                cursor: pointer !important;
+            }
         </style>
         """,
         unsafe_allow_html=True,
@@ -191,7 +206,7 @@ with st.container():
 
     with st.expander("🎬 Ver animación de apoyo", expanded=False):
         st.image(
-            "https://media.tenor.com/c4Iq2rS_WxsAAAAC/we-have-a-problem-hyperlend.gif",
-            caption="Animación del proceso",
+            "assets/problema.gif",
+            caption="Demostración visual",
             use_container_width=True,
         )
