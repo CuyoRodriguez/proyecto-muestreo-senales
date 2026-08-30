@@ -36,15 +36,6 @@ with st.container():
         unsafe_allow_html=True,
     )
 
-    frecuencia = st.slider(
-        "Frecuencia de la señal", min_value=0.1, max_value=3.0, value=1.0, step=0.1
-    )
-    amplitud_pico = st.slider(
-        "Amplitud pico", min_value=1.0, max_value=6.0, value=3.0, step=0.5
-    )
-    valor_inicial = st.slider(
-        "Valor inicial", min_value=0.0, max_value=4.0, value=1.0, step=0.5
-    )
     periodo_muestreo = st.slider(
         "Período de muestreo T (s)",
         min_value=0.1,
@@ -55,12 +46,7 @@ with st.container():
     )
 
     tiempo = np.linspace(0, 40, 400)
-    senal = calcular_senal_continua(
-        tiempo,
-        valor_inicial=valor_inicial,
-        amplitud_pico=amplitud_pico,
-        frecuencia=frecuencia,
-    )
+    senal = calcular_senal_continua(tiempo)
 
     instantes_muestreo, valores_muestreados = calcular_valores_muestreados(
         periodo_muestreo,
@@ -86,7 +72,7 @@ with st.container():
 
     with st.container():
         st.markdown("### 1. Señal continua e(t)")
-        fig1, ax1 = plt.subplots(figsize=(6, 3), dpi=100)
+        fig1, ax1 = plt.subplots(figsize=(8, 3), dpi=100)
         ax1.plot(tiempo, senal, color="#2f6fed", linewidth=2.2)
         ax1.set_title("Señal continua e(t)")
         ax1.set_xlabel("Tiempo, t")
@@ -101,7 +87,7 @@ with st.container():
 
     with st.container():
         st.markdown("### 2. Señal discreta e(kT)")
-        fig2, ax2 = plt.subplots(figsize=(6, 3), dpi=100)
+        fig2, ax2 = plt.subplots(figsize=(8, 3), dpi=100)
         ax2.stem(instantes_muestreo, valores_muestreados, linefmt="#f39c12", markerfmt="o", basefmt="k-")
         ax2.set_title("Señal discreta e(kT)")
         ax2.set_xlabel("Instantes de muestreo, kT")
@@ -116,7 +102,7 @@ with st.container():
 
     with st.container():
         st.markdown("### 3. Señal de muestreo h(t)")
-        fig3, ax3 = plt.subplots(figsize=(6, 3), dpi=100)
+        fig3, ax3 = plt.subplots(figsize=(8, 3), dpi=100)
         ax3.stem(instantes_muestreo, np.ones_like(instantes_muestreo), linefmt="#28a745", markerfmt="^", basefmt="k-")
         ax3.set_title("Tren de impulsos de muestreo h(t)")
         ax3.set_xlabel("Tiempo, t = kT")
