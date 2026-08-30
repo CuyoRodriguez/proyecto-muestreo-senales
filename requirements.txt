@@ -1,0 +1,4 @@
+pdfminer.six
+PyMuPDF
+pymupdf4llm
+markdown
