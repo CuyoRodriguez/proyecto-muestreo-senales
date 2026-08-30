@@ -9,14 +9,16 @@ def calcular_senal_continua(
 	amplitud_pico: float = 3.0,
 	tasa_subida: float = 1.2,
 	tasa_disminucion: float = 0.18,
+	frecuencia: float = 1.0,
 ) -> np.ndarray:
 	"""Calcula una aproximacion suave de la señal continua e(t)."""
 	# Es una aproximacion visual, porque el ejercicio original no proporciona
 	# una ecuacion exacta para la señal.
+	oscilacion = np.sin(2 * np.pi * frecuencia * tiempo)
 	crecimiento = 1 - np.exp(-tasa_subida * tiempo)
 	disminucion = np.exp(-tasa_disminucion * tiempo)
 
-	return valor_inicial + amplitud_pico * crecimiento * disminucion
+	return valor_inicial + amplitud_pico * oscilacion * crecimiento * disminucion
 
 
 def calcular_instantes_muestreo(
