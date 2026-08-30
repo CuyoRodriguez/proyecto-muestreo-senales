@@ -13,6 +13,39 @@ def cargar_css() -> None:
         css = css_path.read_text(encoding="utf-8")
         st.markdown(f"<style>{css}</style>", unsafe_allow_html=True)
 
+    st.markdown(
+        """
+        <style>
+            html, body, [data-testid="stAppViewContainer"] {
+                font-size: 18px;
+            }
+            p, span, label, div, .stMarkdown {
+                font-size: 1.15rem;
+                line-height: 1.5;
+            }
+            [data-testid="stMetricLabel"] {
+                font-size: 1.05rem !important;
+                font-weight: 700 !important;
+                color: #1f2a37 !important;
+            }
+            [data-testid="stMetricValue"] {
+                font-size: 1.65rem !important;
+                font-weight: 800 !important;
+                color: #1f2a37 !important;
+            }
+            h1, h2, h3 {
+                font-weight: 800;
+                color: #1f2a37;
+                letter-spacing: -0.02em;
+            }
+            .stMarkdown p {
+                font-size: 1.08rem;
+            }
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
+
 
 cargar_css()
 
