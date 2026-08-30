@@ -22,16 +22,17 @@ def cargar_css() -> None:
             p, span, label, div, .stMarkdown {
                 font-size: 1.15rem;
                 line-height: 1.5;
+                color: #1E1E1E;
             }
             [data-testid="stMetricLabel"] {
                 font-size: 1.05rem !important;
                 font-weight: 700 !important;
-                color: #1f2a37 !important;
+                color: #1E1E1E !important;
             }
             [data-testid="stMetricValue"] {
                 font-size: 1.65rem !important;
                 font-weight: 800 !important;
-                color: #1f2a37 !important;
+                color: #1E1E1E !important;
             }
             h1, h2, h3 {
                 font-weight: 800;
@@ -40,6 +41,16 @@ def cargar_css() -> None:
             }
             .stMarkdown p {
                 font-size: 1.08rem;
+            }
+            .stSlider label, .stNumberInput label {
+                color: #1E1E1E !important;
+                font-weight: 600;
+            }
+            .section-description {
+                font-size: 15px !important;
+                line-height: 1.5;
+                color: #1E1E1E;
+                margin-top: 0.35rem;
             }
         </style>
         """,
@@ -107,7 +118,6 @@ with st.container():
         st.markdown("### 1. Señal continua e(t)")
         fig1, ax1 = plt.subplots(figsize=(8, 3), dpi=100)
         ax1.plot(tiempo, senal, color="#2f6fed", linewidth=2.2)
-        ax1.set_title("Señal continua e(t)")
         ax1.set_xlabel("Tiempo, t")
         ax1.set_ylabel("Amplitud")
         ax1.tick_params(axis="both", which="major", labelsize=10)
@@ -115,14 +125,14 @@ with st.container():
         plt.tight_layout()
         st.pyplot(fig1, use_container_width=True)
         st.markdown(
-            "La señal continua está definida para cualquier instante de tiempo y representa la evolución de la variable en el tiempo."
+            "<div class='section-description'>La señal continua está definida para cualquier instante de tiempo y representa la evolución de la variable en el tiempo.</div>",
+            unsafe_allow_html=True,
         )
 
     with st.container():
         st.markdown("### 2. Señal discreta e(kT)")
         fig2, ax2 = plt.subplots(figsize=(8, 3), dpi=100)
         ax2.stem(instantes_muestreo, valores_muestreados, linefmt="#f39c12", markerfmt="o", basefmt="k-")
-        ax2.set_title("Señal discreta e(kT)")
         ax2.set_xlabel("Instantes de muestreo, kT")
         ax2.set_ylabel("Valor")
         ax2.tick_params(axis="both", which="major", labelsize=10)
@@ -130,14 +140,14 @@ with st.container():
         plt.tight_layout()
         st.pyplot(fig2, use_container_width=True)
         st.markdown(
-            "La señal discreta toma los valores de la señal continua solo en los instantes t = kT, donde k es un entero."
+            "<div class='section-description'>La señal discreta toma los valores de la señal continua solo en los instantes t = kT, donde k es un entero.</div>",
+            unsafe_allow_html=True,
         )
 
     with st.container():
         st.markdown("### 3. Señal de muestreo h(t)")
         fig3, ax3 = plt.subplots(figsize=(8, 3), dpi=100)
         ax3.stem(instantes_muestreo, np.ones_like(instantes_muestreo), linefmt="#28a745", markerfmt="^", basefmt="k-")
-        ax3.set_title("Tren de impulsos de muestreo h(t)")
         ax3.set_xlabel("Tiempo, t = kT")
         ax3.set_ylabel("h(t)")
         ax3.tick_params(axis="both", which="major", labelsize=10)
@@ -146,5 +156,6 @@ with st.container():
         plt.tight_layout()
         st.pyplot(fig3, use_container_width=True)
         st.markdown(
-            "El tren de muestreo representa los instantes en los que la señal continua es capturada para producir la versión discreta."
+            "<div class='section-description'>El tren de muestreo representa los instantes en los que la señal continua es capturada para producir la versión discreta.</div>",
+            unsafe_allow_html=True,
         )
