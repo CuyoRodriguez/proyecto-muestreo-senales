@@ -209,6 +209,8 @@ with st.container():
         gif_path = os.path.join(os.path.dirname(__file__), "assets", "problema.gif")
 
         if os.path.exists(gif_path):
-            st.image(gif_path, caption="Demostración visual", use_container_width=True)
+            col1, col2, col3 = st.columns([1, 2, 1])
+            with col2:
+                st.image(gif_path, caption="Demostración visual", width=400)
         else:
             st.warning("No se encontró el archivo del GIF en la ruta especificada.")
