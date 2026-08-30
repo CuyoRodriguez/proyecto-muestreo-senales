@@ -10,11 +10,12 @@ def calcular_senal_continua(
 	tasa_subida: float = 1.2,
 	tasa_disminucion: float = 0.18,
 	frecuencia: float = 1.0,
+	fase_inicial: float = np.pi / 4,
 ) -> np.ndarray:
 	"""Calcula una aproximacion suave de la señal continua e(t)."""
 	# Es una aproximacion visual, porque el ejercicio original no proporciona
 	# una ecuacion exacta para la señal.
-	oscilacion = np.sin(2 * np.pi * frecuencia * tiempo)
+	oscilacion = np.sin(2 * np.pi * frecuencia * tiempo + fase_inicial)
 	crecimiento = 1 - np.exp(-tasa_subida * tiempo)
 	disminucion = np.exp(-tasa_disminucion * tiempo)
 
@@ -51,17 +52,43 @@ def calcular_instantes_muestreo(
 	return indices * periodo_muestreo
 
 
-def calcular_valores_muestreados(
+def calcular_senal_discreta(
 	periodo_muestreo: float,
 	tiempo_inicial: float,
 	tiempo_final: float,
+	valor_inicial: float = 1.0,
+	amplitud_pico: float = 3.0,
+	tasa_subida: float = 1.2,
+	tasa_disminucion: float = 0.18,
+	frecuencia: float = 1.0,
+	fase_inicial: float = np.pi / 4,
 ) -> tuple[np.ndarray, np.ndarray]:
-	"""Devuelve los instantes de muestreo y los valores correspondientes e(kT)."""
+	"""Evalúa la misma ecuación e(t) en los instantes discretos t_k = kT."""
 	instantes = calcular_instantes_muestreo(
 		periodo_muestreo,
 		tiempo_inicial,
 		tiempo_final,
 	)
-	valores = calcular_senal_continua(instantes)
-
+	valores = calcular_senal_continua(
+		instantes,
+		valor_inicial=valor_inicial,
+		amplitud_pico=amplitud_pico,
+		tasa_subida=tasa_subida,
+		tasa_disminucion=tasa_disminucion,
+		frecuencia=frecuencia,
+		fase_inicial=fase_inicial,
+	)
 	return instantes, valores
+
+
+def calcular_valores_muestreados(
+	periodo_muestreo: float,
+	tiempo_inicial: float,
+	tiempo_final: float,
+) -> tuple[np.ndarray, np.ndarray]:
+	"""Compatibilidad: devuelve los instantes de muestreo y los valores correspondientes e(kT)."""
+	return calcular_senal_discreta(
+		periodo_muestreo,
+		tiempo_inicial,
+		tiempo_final,
+	)

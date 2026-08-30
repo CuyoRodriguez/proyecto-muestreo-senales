@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import streamlit as st
 
-from src.signals import calcular_senal_continua, calcular_valores_muestreados
+from src.signals import calcular_senal_continua, calcular_senal_discreta
 
 
 def cargar_css() -> None:
@@ -121,7 +121,7 @@ with st.container():
     tiempo = np.linspace(0, 40, 400)
     senal = calcular_senal_continua(tiempo)
 
-    instantes_muestreo, valores_muestreados = calcular_valores_muestreados(
+    instantes_muestreo, valores_muestreados = calcular_senal_discreta(
         periodo_muestreo,
         0,
         40,
